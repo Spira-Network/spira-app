@@ -1,0 +1,9 @@
+{
+    // improves tailwind suggestions https://stackoverflow.com/a/68350950/2976642
+    "editor.quickSuggestions": {
+        "strings": true
+    },
+    "files.associations": {
+        "*.css": "tailwindcss"
+    }
+}
