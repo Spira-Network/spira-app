@@ -8,19 +8,44 @@ interface Props {
 const { whiteNav } = Astro.props;
 ---
 
-<nav class="pl-20 pr-20 pt-10 flex justify-between fixed w-screen z-10">
-  <a href="/" class="w-1/4">
-    <img src="/horizontal.png" alt="spira horizontal logo" />
-    <ul
-      class=`flex flex-1 justify-end gap-16 items-center font-robotoslab ${whiteNav && "text-white"}`
-    >
-      <li><a href="/home">Home</a></li>
-      <li><a href="#">Iniciar sesión</a></li>
-      <li><a href="#">Unirse</a></li>
-      <button> <Globe2 /></button>
-      <button>
-        <Menu />
-      </button>
-    </ul>
+<nav class="pl-20 pr-20 flex justify-between fixed w-screen z-10 items-center">
+  <a href="/" class="h-1/6" aria-label="navigate to index page">
+    <img
+      src="/horizontal.png"
+      alt="spira horizontal logo"
+      class="max-w-[250px] max-h-[100px] aspect-auto"
+    />
   </a>
+  <ul
+    class=`flex items-center gap-10 font-robotoslab ${whiteNav && "text-white"}`
+  >
+    <li><a href="/home" aria-label="navigate to home page">Home</a></li>
+    <li><a href="#" aria-label="log in">Iniciar sesión</a></li>
+    <li><a href="#" aria-label="sign up">Unirse</a></li>
+    <li><Globe2 /></li>
+    <li><Menu /></li>
+  </ul>
 </nav>
+
+<style>
+  .navbar-scrolled {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<script>
+  const content = document.querySelector("main");
+
+  const scrollEvent = () => {
+    const nav = document.querySelector("nav");
+    const classes = ["backdrop-filter", "backdrop-blur-md", "shadow-md"];
+    if (content.scrollTop > 50) {
+      nav.classList.add(...classes);
+    } else {
+      nav.classList.remove(...classes);
+    }
+  };
+
+  content.addEventListener("scroll", scrollEvent);
+</script>
