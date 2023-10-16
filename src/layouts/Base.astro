@@ -6,11 +6,13 @@ import Nav from "../components/navbar.astro";
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
-  title: string;
+  title?: string;
   whiteNav?: boolean;
 }
 
 const { title, whiteNav } = Astro.props;
+
+const pageTitle = [title, "Spira"].filter(Boolean).join(" - ");
 ---
 
 <html lang="en">
@@ -19,7 +21,7 @@ const { title, whiteNav } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <ViewTransitions />
-    <title>{title}</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
     <Nav {whiteNav} />
