@@ -1,0 +1,60 @@
+---
+import { Mouse } from "lucide-react";
+
+interface Props {
+  from: string;
+  scrollTo: string;
+}
+
+const { from, scrollTo } = Astro.props;
+---
+
+<scroll-button
+  aria-label="scroll down"
+  class="absolute right-10 bottom-10 opacity-5 motion-safe:animate-pulse"
+  data-from={from}
+>
+  <a href={scrollTo} class="text-xs items-center flex">
+    desliza
+    <Mouse width={32} height={32} />
+  </a>
+</scroll-button>
+
+<script>
+  class ScrollButton extends HTMLElement {
+    private observer: IntersectionObserver | null;
+
+    constructor() {
+      super();
+      this.observer = null;
+    }
+
+    connectedCallback() {
+      const fromElement = document.querySelector(this.dataset.from);
+
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          if (!entries[0].isIntersecting) {
+            this.classList.add("fadeOut");
+
+            setTimeout(() => {
+              this.observer.disconnect();
+              this.remove();
+            }, 500);
+          }
+        },
+        { threshold: 0.1 }
+      );
+
+      this.observer.observe(fromElement);
+    }
+
+    disconnectedCallback() {
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      }
+    }
+  }
+  customElements.define("scroll-button", ScrollButton);
+</script>
