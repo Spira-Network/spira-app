@@ -30,5 +30,8 @@ const pageTitle = [title, "Spira"].filter(Boolean).join(" - ");
   <body>
     <Nav {whiteNav} />
     <slot />
+    <script>
+      import "../lib/dev-utils.ts";
+    </script>
   </body>
 </html>
