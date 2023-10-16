@@ -1,13 +1,21 @@
-<section aria-label="image carousel">
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section aria-label="image carousel" class={className}>
   <div class="carousel">
     <button class="carousel-button prev">&lsaquo;</button>
     <button class="carousel-button next">&rsaquo;</button>
     <ul>
       <li class="slide" data-active>
-        <img src="/home-01.jpg" alt="first image" />
+        <img src="home/1.jpg" alt="first image" />
       </li>
       <li class="slide">
-        <img src="/home-02.jpg" alt="second image" />
+        <img src="home/2.jpg" alt="second image" />
       </li>
     </ul>
   </div>
