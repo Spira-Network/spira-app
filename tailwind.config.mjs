@@ -59,8 +59,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        montserrat: "Montserrat",
-        robotoslab: "Roboto Slab"
+        montserrat: "Montserrat Variable",
+        robotoslab: "Roboto Slab Variable"
       }
     },
     container: {
