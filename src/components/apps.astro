@@ -1,0 +1,26 @@
+---
+import AppCard from "./app-card.astro";
+import apps from "../data/apps.json";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<section
+  aria-label="Listado de aplicaciones"
+  class={`p-20 container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-28 min-h-screen ${className}`}
+>
+  {
+    apps.map((app) => (
+      <AppCard
+        title={app.title}
+        subtitle={app.subtitle}
+        content={app.content}
+        image={app.image}
+      />
+    ))
+  }
+</section>
