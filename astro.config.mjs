@@ -11,16 +11,14 @@ const baseIdentityUrlProd = 'https://identity.ic0.app'
 let finalIdentityUrl = baseIdentityUrlProd
 if (isDev) {
     const iiCanisterId = canisterIds.internet_identity.local
-    console.log('Using local Internet Identity canister ID: ' + iiCanisterId)
     finalIdentityUrl = baseIdentityUrlDev + iiCanisterId
-    console.log('Using local Internet Identity URL: ' + finalIdentityUrl)
 }
 
 export default defineConfig({
     vite: {
         server: {
             watch: {
-                ignored: '**/.dfx/**',
+                ignored: ['**/.dfx/**', '**/dist/**'],
             },
         },
         define: {
