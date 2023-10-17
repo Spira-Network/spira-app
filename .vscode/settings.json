@@ -1,12 +1,21 @@
 {
-    // improves tailwind suggestions https://stackoverflow.com/a/68350950/2976642
-    "editor.quickSuggestions": {
-        "strings": true
-    },
-    "files.associations": {
-        "*.css": "tailwindcss"
-    },
-    "emmet.includeLanguages": {
-        "astro": "html"
-    },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": true
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+
+  // improves tailwind suggestions https://stackoverflow.com/a/68350950/2976642
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "emmet.includeLanguages": {
+    "astro": "html"
+  }
 }
