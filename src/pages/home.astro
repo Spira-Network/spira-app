@@ -1,14 +1,14 @@
 ---
-import AppsSection from "../components/apps.astro";
-import ScrollButton from "../components/scroll-button.astro";
-import Slider from "../components/slider.astro";
-import Base from "../layouts/Base.astro";
+import AppsSection from '../components/apps.astro'
+import ScrollButton from '../components/scroll-button.astro'
+import Slider from '../components/slider.astro'
+import Base from '../layouts/Base.astro'
 ---
 
-<Base title="Home">
-  <main class="scroll-smooth overflow-x-hidden">
-    <Slider />
-    <AppsSection />
-    <ScrollButton from="main>:first-child" scrollTo="#content" />
-  </main>
+<Base title='Home'>
+    <main class='scroll-smooth overflow-x-hidden'>
+        <Slider />
+        <AppsSection />
+        <ScrollButton from='main>:first-child' scrollTo='#content' />
+    </main>
 </Base>

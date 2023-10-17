@@ -1,37 +1,37 @@
 ---
-import "@fontsource-variable/roboto-slab";
-import "@fontsource-variable/montserrat";
-import "@/globals.css";
-import Nav from "../components/navbar.astro";
-import { ViewTransitions } from "astro:transitions";
+import '@fontsource-variable/roboto-slab'
+import '@fontsource-variable/montserrat'
+import '@/globals.css'
+import Nav from '../components/navbar.astro'
+import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
-  title?: string;
-  whiteNav?: boolean;
+    title?: string
+    whiteNav?: boolean
 }
 
-const { title, whiteNav } = Astro.props;
+const { title, whiteNav } = Astro.props
 
-const pageTitle = [title, "Spira"].filter(Boolean).join(" - ");
+const pageTitle = [title, 'Spira'].filter(Boolean).join(' - ')
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta
-      name="description"
-      content="Spira es una herramienta enlazadora que se desarrolla a través de un mapa interactivo global"
-    />
-    <ViewTransitions />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <Nav {whiteNav} />
-    <slot />
-    <script>
-      import "../lib/dev-utils.ts";
-    </script>
-  </body>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8' />
+        <link rel='icon' type='image/svg+xml' href='favicon.svg' />
+        <meta name='viewport' content='width=device-width' />
+        <meta
+            name='description'
+            content='Spira es una herramienta enlazadora que se desarrolla a través de un mapa interactivo global'
+        />
+        <ViewTransitions />
+        <title>{pageTitle}</title>
+    </head>
+    <body>
+        <Nav {whiteNav} />
+        <slot />
+        <script>
+            import '../lib/dev-utils.ts'
+        </script>
+    </body>
 </html>
