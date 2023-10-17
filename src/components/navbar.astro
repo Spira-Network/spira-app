@@ -11,10 +11,10 @@ const { whiteNav } = Astro.props
 
 <nav class='pl-20 pr-20 flex justify-between fixed w-screen z-10 items-center'>
     <a href='/' class='h-1/6' aria-label='navigate to index page'>
-        <img src='/horizontal.png' alt='spira horizontal logo' class='max-w-[250px] max-h-[100px] aspect-auto' />
+        <img src='horizontal.png' alt='spira horizontal logo' class='max-w-[250px] max-h-[100px] aspect-auto' />
     </a>
     <ul class=`flex items-center gap-10 font-montserrat font-semibold ${whiteNav && "text-white"}`>
-        <li><a href='/home' aria-label='navigate to home page'>Home</a></li>
+        <li><a href='home' aria-label='navigate to home page'>Home</a></li>
         <Auth client:only='react' />
         <li><Globe2 /></li>
         <li><Menu /></li>
