@@ -1,0 +1,189 @@
+<auth-button id='loginBtn' class='cursor-pointer flex flex-row items-center gap-4'>Conectar</auth-button>
+
+<script>
+    import { AnonymousIdentity } from '@dfinity/agent'
+    import { AuthClient } from '@dfinity/auth-client'
+    import { Bell, Mail } from 'lucide-react'
+    import React from 'react'
+    import { createRoot } from 'react-dom/client'
+    import Avatar from './connected-avatar'
+
+    const IDENTITY_URL = import.meta.env.PUBLIC_II_URL
+
+    interface ElementOption {
+        tag: string
+        reactComponent?: React.ComponentType<any>
+        props?: Record<string, any>
+        text?: string
+        id?: string
+    }
+
+    class AuthButton extends HTMLElement {
+        private static authClient: AuthClient | null = null
+        private observer: MutationObserver | null = null
+        private boundHandleClick: (event: MouseEvent) => void
+
+        constructor() {
+            super()
+            this.boundHandleClick = this.handleClick.bind(this)
+        }
+
+        // LIFECYCLE METHODS
+        async connectedCallback() {
+            await this.initAuthClient()
+            this.updateUI()
+            this.addEventListener('click', this.boundHandleClick)
+            this.observeDropdownState()
+        }
+
+        disconnectedCallback() {
+            this.removeEventListener('click', this.boundHandleClick)
+            this.disconnectObserver()
+        }
+
+        // AUTH METHODS
+        private async initAuthClient() {
+            if (!AuthButton.authClient) {
+                try {
+                    AuthButton.authClient = await AuthClient.create()
+                } catch (error) {
+                    console.error('Error creating AuthClient:', error)
+                }
+            }
+        }
+
+        private async isAuthenticated() {
+            return (
+                AuthButton.authClient &&
+                (await AuthButton.authClient.isAuthenticated()) &&
+                !(AuthButton.authClient.getIdentity() instanceof AnonymousIdentity)
+            )
+        }
+
+        // UI METHODS
+        private async updateUI() {
+            const isAuthenticated = await this.isAuthenticated()
+            isAuthenticated ? this.setAuthenticatedUI() : this.setLoginUI()
+        }
+
+        private setAuthenticatedUI() {
+            this.setContent([
+                { tag: 'span', reactComponent: Mail },
+                { tag: 'span', reactComponent: Bell },
+                { tag: 'user-avatar', reactComponent: Avatar, props: { onDisconnect: () => this.handleLogout() } },
+            ])
+        }
+
+        private setLoginUI() {
+            this.setContent([{ tag: 'span', text: 'Conectar', id: 'loginBtn' }])
+        }
+
+        // DOM MANIPULATION METHODS
+        private setContent(elements: ElementOption[]) {
+            this.removeAllChildNodes()
+            elements.forEach(el => this.appendElement(el))
+        }
+
+        private appendElement(el: ElementOption) {
+            let element: HTMLElement
+            if (el.reactComponent) {
+                element = this.createReactElement(el)
+            } else {
+                element = document.createElement(el.tag)
+                if (el.text) element.textContent = el.text
+                if (el.id) element.id = el.id
+            }
+            this.appendChild(element)
+        }
+
+        private createReactElement(el: ElementOption) {
+            const element = document.createElement(el.tag)
+            const container = document.createElement('div')
+            element.appendChild(container)
+            const root = createRoot(container)
+            root.render(React.createElement(el.reactComponent, { ...el.props }))
+            return element
+        }
+
+        private removeAllChildNodes() {
+            while (this.firstChild) {
+                this.removeChild(this.firstChild)
+            }
+        }
+
+        // EVENT HANDLERS
+        private async handleClick(event: MouseEvent) {
+            const { id } = event.target as HTMLElement
+            if (id === 'disconnectBtn') return await this.handleLogout()
+            if (id === 'loginBtn') return await this.handleLogin()
+        }
+
+        private async handleLogin() {
+            await this.initAuthClient()
+            if (!(await this.isAuthenticated())) {
+                try {
+                    AuthButton.authClient.login({
+                        identityProvider: IDENTITY_URL,
+                        maxTimeToLive: BigInt(7 * 24 * 60 * 60 * 1000 * 1000 * 1000),
+                        onSuccess: () => this.setAuthenticatedUI(),
+                    })
+                } catch (error) {
+                    console.error('Error during login:', error)
+                }
+            } else {
+                this.setAuthenticatedUI()
+            }
+        }
+
+        private async handleLogout() {
+            await this.waitForDropdownClose()
+            if (!AuthButton.authClient) return
+            await AuthButton.authClient.logout()
+            AuthButton.authClient = null
+            this.updateUI()
+        }
+
+        // OBSERVATION METHODS
+        private observeDropdownState() {
+            if (!('MutationObserver' in window)) return
+            const target = this.querySelector('span[data-state]')
+            if (!target) return
+            const config = { attributes: true, attributeFilter: ['data-state'] }
+            this.observer = new MutationObserver(this.handleDropdownMutations.bind(this))
+            this.observer.observe(target, config)
+        }
+
+        private handleDropdownMutations(mutations: MutationRecord[]) {
+            for (const mutation of mutations) {
+                if ((mutation.target as HTMLElement).getAttribute('data-state') === 'closed') {
+                    this.removeAllChildNodes()
+                }
+            }
+        }
+
+        private disconnectObserver() {
+            if (this.observer) {
+                this.observer.disconnect()
+                this.observer = null
+            }
+        }
+
+        private waitForDropdownClose(): Promise<void> {
+            return new Promise(resolve => {
+                if (!document.querySelector('div[data-radix-popper-content-wrapper]')) {
+                    resolve()
+                    return
+                }
+                const observer = new MutationObserver(() => {
+                    if (!document.querySelector('div[data-radix-popper-content-wrapper]')) {
+                        observer.disconnect()
+                        resolve()
+                    }
+                })
+                observer.observe(document.body, { childList: true, subtree: true })
+            })
+        }
+    }
+
+    customElements.define('auth-button', AuthButton)
+</script>
