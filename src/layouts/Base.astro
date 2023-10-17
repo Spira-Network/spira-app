@@ -29,7 +29,9 @@ const pageTitle = [title, 'Spira'].filter(Boolean).join(' - ')
     </head>
     <body>
         <Nav {whiteNav} />
-        <slot />
+        <main class='scroll-smooth overflow-x-hidden'>
+            <slot />
+        </main>
         <script>
             import '../lib/dev-utils.ts'
         </script>
