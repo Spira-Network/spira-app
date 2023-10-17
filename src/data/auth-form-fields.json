@@ -1,0 +1,54 @@
+{
+  "signUpFields": [
+    {
+      "id": "username",
+      "label": "Nombre de usuarie",
+      "placeholder": "¿Cómo te gusta que te llamen?",
+      "type": "text"
+    },
+    {
+      "id": "pronouns",
+      "label": "Pronombres",
+      "type": "text"
+    },
+    {
+      "id": "name",
+      "label": "Nombre",
+      "placeholder": "¿Cuál es tu nombre de origen?",
+      "type": "text"
+    },
+    {
+      "id": "email",
+      "label": "Dirección de correo electrónico",
+      "type": "email"
+    },
+    {
+      "id": "surname",
+      "label": "Apellidos",
+      "placeholder": "¿Cuáles son tus raíces?",
+      "type": "text"
+    },
+    {
+      "id": "password",
+      "label": "Contraseña",
+      "type": "password"
+    },
+    {
+      "id": "confirmPassword",
+      "label": "Confirmar Contraseña",
+      "type": "password"
+    }
+  ],
+  "loginFields": [
+    {
+      "id": "userOrEmail",
+      "label": "Nombre de usuarie o correo electrónico",
+      "type": "text"
+    },
+    {
+      "id": "password",
+      "label": "Contraseña",
+      "type": "password"
+    }
+  ]
+}
