@@ -2,33 +2,32 @@
 import { Globe2 } from 'lucide-react'
 ---
 
-<div class='min-h-screen'>
+<section class='max-h-full'>
     <video
         id='backgroundVideo'
         aria-hidden='true'
         muted
         autoplay
         playsinline
-        class='relative h-full w-full object-cover transition-opacity duration-300 pointer visible opacity-100 -scale-x-100'>
+        class='relative h-screen object-cover transition-opacity duration-300 pointer visible opacity-100 -scale-x-100'>
         <source src='spira-intro.mp4' type='video/mp4' />Your browser does not support the video tag.
     </video>
-    <ul
-        class='absolute top-1/2 left-1/4 transform -translate-x-1/2 -translate-y-1/2 gap-y-32 flex flex-col pl-40 font-montserrat uppercase font-bold max-h-screen'>
+    <ul class='relative transform -translate-y-full gap-y-28 flex flex-col font-montserrat font-semibold text-sm p-40'>
         <li class='flex items-center gap-6'>
             <Globe2 />
-            <p>Sincronizador de recursos</p>
+            <button class='uppercase'>Sincronizador de recursos</button>
         </li>
         <li class='flex items-center gap-6'>
             <Globe2 />
-            <button>Mapa interactivo</button>
+            <button class='uppercase'>Mapa interactivo</button>
         </li>
         <li class='flex items-center gap-6'>
             <Globe2 />
-            <button>Red sináptica</button>
+            <button class='uppercase'>Red sináptica</button>
         </li>
         <li class='flex items-center gap-6'>
             <Globe2 />
-            <button>Foro de co-creación</button>
+            <button class='uppercase'>Foro de co-creación</button>
         </li>
     </ul>
-</div>
+</section>

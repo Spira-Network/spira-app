@@ -6,42 +6,65 @@ interface Props {
     whiteNav?: boolean
 }
 
-const { whiteNav } = Astro.props
+const { whiteNav = false } = Astro.props
 ---
 
-<nav class='pl-20 pr-20 flex justify-between fixed w-screen z-10 items-center'>
+<nav-bar white-nav={whiteNav} class='pl-20 pr-20 flex justify-between fixed w-screen z-10 items-center'>
     <a href='/' class='h-1/6' aria-label='navigate to index page'>
         <img src='horizontal.png' alt='spira horizontal logo' class='max-w-[250px] max-h-[100px] aspect-auto' />
     </a>
     <ul class=`flex items-center gap-10 font-montserrat font-semibold ${whiteNav && "text-white"}`>
         <li><a href='home' aria-label='navigate to home page'>Home</a></li>
         <Auth client:only='react' />
-        <li><Globe2 /></li>
+        <li><a href='events'><Globe2 /></a></li>
         <li><Menu /></li>
     </ul>
-</nav>
-
-<style>
-    .navbar-scrolled {
-        background: rgba(255, 255, 255, 0.6);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-</style>
+</nav-bar>
 
 <script>
-    const content = document.querySelector('main')
+    class NavBar extends HTMLElement {
+        private content: HTMLElement | null = null
+        private whiteNav: boolean = false
 
-    if (content) {
-        const scrollEvent = () => {
-            const nav = document.querySelector('nav')
-            const classes = ['backdrop-filter', 'backdrop-blur-md', 'shadow-md']
-            if (content.scrollTop > 50) {
-                nav.classList.add(...classes)
-            } else {
-                nav.classList.remove(...classes)
+        constructor() {
+            super()
+        }
+
+        connectedCallback() {
+            this.whiteNav = this.getAttribute('white-nav') === 'true'
+
+            this.content = document.querySelector('main')
+            if (this.content) {
+                this.content.addEventListener('scroll', this.scrollEvent.bind(this))
+            }
+
+            this.styleWhiteNav()
+        }
+
+        disconnectedCallback() {
+            if (this.content) {
+                this.content.removeEventListener('scroll', this.scrollEvent.bind(this))
             }
         }
 
-        content.addEventListener('scroll', scrollEvent)
+        scrollEvent() {
+            const classes = ['backdrop-filter', 'backdrop-blur-md', 'shadow-md']
+            if (this.content && this.content.scrollTop > 50) {
+                this.classList.add(...classes)
+            } else {
+                this.classList.remove(...classes)
+            }
+        }
+
+        styleWhiteNav() {
+            if (this.whiteNav) {
+                const navbarList = this.querySelector('.navbar-list')
+                if (navbarList) {
+                    navbarList.classList.add('text-white')
+                }
+            }
+        }
     }
+
+    customElements.define('nav-bar', NavBar)
 </script>
