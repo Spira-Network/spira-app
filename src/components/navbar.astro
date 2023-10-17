@@ -1,5 +1,6 @@
 ---
 import { Globe2, Menu } from "lucide-react";
+import Auth from "./auth";
 
 interface Props {
   whiteNav?: boolean;
@@ -20,8 +21,7 @@ const { whiteNav } = Astro.props;
     class=`flex items-center gap-10 font-montserrat font-semibold ${whiteNav && "text-white"}`
   >
     <li><a href="/home" aria-label="navigate to home page">Home</a></li>
-    <li><a href="#" aria-label="log in">Iniciar sesión</a></li>
-    <li><a href="#" aria-label="sign up">Unirse</a></li>
+    <Auth client:only="react"/>
     <li><Globe2 /></li>
     <li><Menu /></li>
   </ul>
