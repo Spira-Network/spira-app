@@ -1,6 +1,6 @@
 ---
-import AppCard from "./app-card.astro";
 import apps from "../data/apps.json";
+import AppCard from "./app-card.astro";
 
 interface Props {
   class?: string;
@@ -10,6 +10,7 @@ const { class: className } = Astro.props;
 ---
 
 <section
+  id="content"
   aria-label="Listado de aplicaciones"
   class={`p-20 container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-28 min-h-screen ${className}`}
 >
