@@ -1,4 +1,4 @@
-import { AstroIntegrationLogger, type AstroIntegration } from 'astro'
+import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
 import { bgMagenta, black, dim, magenta, yellow } from 'kleur'
 import { createRequire } from 'node:module'
 import path from 'node:path'
