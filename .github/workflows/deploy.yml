@@ -23,7 +23,7 @@ jobs:
               id: deployment
               with:
                   token: '${{ github.token }}'
-                  environment-url: https:/spira.network
+                  environment-url: https://spira.network
                   environment: production
 
             - name: Deploy to Vercel
