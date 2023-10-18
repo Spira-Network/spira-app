@@ -31,5 +31,5 @@ jobs:
               id: deployment
               with:
                   token: '${{ secrets.GITHUB_TOKEN }}'
-                  target_url: https:/spira.network
+                  environment-url: https:/spira.network
                   environment: production
