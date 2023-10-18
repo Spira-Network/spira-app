@@ -1,3 +1,5 @@
+import '@fontsource/montserrat/latin-600.css'
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Menu } from 'lucide-react'
 

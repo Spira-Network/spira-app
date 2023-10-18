@@ -1,3 +1,5 @@
+import '@fontsource/roboto-slab/latin-400.css'
+
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 

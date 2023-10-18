@@ -1,3 +1,5 @@
+import '@fontsource/roboto-slab/latin-300.css'
+
 import { useState } from 'react'
 import { Dialog, DialogTrigger } from './ui/dialog'
 
