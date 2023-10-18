@@ -45,9 +45,10 @@ jobs:
                   name: production-files
                   path: ./dist
 
-            - name: Deploy to GitHub Pages
-              uses: amondnet/vercel-action@v25
+            - name: Deploy to Vercel
+              uses: BetaHuhn/deploy-to-vercel-action@v1
               with:
-                  vercel-token: ${{ secrets.VERCEL_TOKEN }}
-                  vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-                  vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+                  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+                  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
