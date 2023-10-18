@@ -1,14 +1,14 @@
 import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
-import iiConfig from './tools/vite-ii-plugin/vite-ii-plugin'
+import internetIdentity from './tools/astro-ii-integration'
 
 export default defineConfig({
     vite: {
         server: { watch: { ignored: ['**/.dfx/**', '**/dist/**'] } },
-        plugins: [iiConfig()],
     },
     integrations: [
+        internetIdentity(),
         react(),
         tailwind({
             applyBaseStyles: false,
