@@ -1,18 +1,26 @@
 import react from '@astrojs/react'
 import tailwind from '@astrojs/tailwind'
 import { defineConfig } from 'astro/config'
-import canisterIds from './.dfx/local/canister_ids.json'
 
 const isDev = process.env.NODE_ENV === 'development'
 
-const baseIdentityUrlDev = 'http://127.0.0.1:8000/?canisterId='
-const baseIdentityUrlProd = 'https://identity.ic0.app'
+const canisterIds =
+    isDev &&
+    (() => {
+        try {
+            return import('./.dfx/local/canister_ids.json')
+        } catch {
+            throw 'Failed to load canisterIds.'
+        }
+    })()
 
-let finalIdentityUrl = baseIdentityUrlProd
-if (isDev) {
-    const iiCanisterId = canisterIds.internet_identity.local
-    finalIdentityUrl = baseIdentityUrlDev + iiCanisterId
+const baseUrls = {
+    dev: 'http://127.0.0.1:8000/?canisterId=',
+    prod: 'https://identity.ic0.app',
 }
+
+const iiCanisterId = canisterIds?.internet_identity?.local
+const finalIdentityUrl = isDev && iiCanisterId ? `${baseUrls.dev}${iiCanisterId}` : baseUrls.prod
 
 export default defineConfig({
     vite: {
