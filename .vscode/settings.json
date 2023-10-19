@@ -15,7 +15,15 @@
     "files.associations": {
         "*.css": "tailwindcss"
     },
+    "tailwindCSS.emmetCompletions": true,
     "emmet.includeLanguages": {
-        "astro": "html"
+        "astro": "html",
+        "typescriptreact": "jsx"
+    },
+    "emmet.syntaxProfiles": {
+        "jsx": {
+            "attr_quotes": "single",
+            "attr_name": "className"
+        }
     }
 }
