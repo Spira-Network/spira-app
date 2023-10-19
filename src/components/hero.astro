@@ -1,20 +1,18 @@
 ---
-import '@fontsource/montserrat/latin-600.css'
-
 import { Globe2 } from 'lucide-react'
 ---
 
-<section class='max-h-full'>
+<section class='relative h-screen w-screen overflow-hidden'>
     <video
         id='backgroundVideo'
         aria-hidden='true'
         muted
         autoplay
         playsinline
-        class='visible relative h-screen w-full -scale-x-100 cursor-pointer object-cover opacity-100 transition-opacity duration-300'>
-        <source src='spira-intro.mp4' type='video/mp4' />Your browser does not support the video tag.
+        class='absolute inset-0 h-full w-full -scale-x-100 object-cover'>
+        <source src='/spira-intro.mp4' type='video/mp4' />Your browser does not support the video tag.
     </video>
-    <ul class='relative flex -translate-y-full flex-col gap-y-28 p-40 font-montserrat text-sm font-semibold'>
+    <ul class='absolute inset-0 z-10 flex flex-col justify-center gap-y-28 p-40 font-montserrat text-sm font-semibold'>
         <li class='flex items-center gap-6'>
             <Globe2 />
             <button class='uppercase'>Sincronizador de recursos</button>
