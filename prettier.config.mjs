@@ -38,5 +38,6 @@ export default {
         { files: '*.astro', options: { parser: 'astro' } },
         { files: ['.editorconfig', '*.toml'], options: { parser: 'taplo' } },
         { files: '*.json', options: { parser: 'json' } },
+        { files: 'package.json', options: { parser: 'json', tabWidth: 2 } },
     ],
 }

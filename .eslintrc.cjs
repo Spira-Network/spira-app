@@ -1,5 +1,7 @@
 // @ts-check
 
+const project = './tsconfig.eslint.json'
+
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
     $schema: 'http://json.schemastore.org/eslintrc',
@@ -8,21 +10,33 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    parser: '@typescript-eslint/parser',
-    extends: ['plugin:astro/recommended', 'plugin:astro/jsx-a11y-recommended', 'prettier'],
+    extends: [
+        'plugin:astro/recommended',
+        'plugin:astro/jsx-a11y-recommended',
+        'plugin:tailwindcss/recommended',
+        'prettier',
+    ],
+    plugins: ['preferred-import'],
     overrides: [
         {
             files: ['*.astro'],
             parser: 'astro-eslint-parser',
             parserOptions: {
                 parser: '@typescript-eslint/parser',
+                project: true,
                 extraFileExtensions: ['.astro'],
             },
-            rules: {},
+            rules: { 'preferred-import/ts-imports': 'error' },
+        },
+        {
+            files: ['**/*.{ts,tsx}'],
+            parser: '@typescript-eslint/parser',
+            parserOptions: { project },
+            rules: { 'preferred-import/ts-imports': 'error' },
         },
         {
             // ensures to also lint these extensions
-            files: ['*.cjs', '*.mjs', '*.ts'],
+            files: ['*.cjs', '*.mjs'],
         },
     ],
     // improves performance by ignoring node_modules

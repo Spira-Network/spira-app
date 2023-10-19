@@ -3,7 +3,8 @@
         "astro-build.astro-vscode",
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "dfinity-foundation.vscode-motoko"
+        "dfinity-foundation.vscode-motoko",
+        "bradlc.vscode-tailwindcss"
     ],
     "unwantedRecommendations": []
 }
