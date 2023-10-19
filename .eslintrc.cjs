@@ -6,9 +6,11 @@ const project = './tsconfig.eslint.json'
 module.exports = {
     $schema: 'http://json.schemastore.org/eslintrc',
     root: true,
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
+        project,
     },
     extends: [
         'plugin:astro/recommended',
@@ -17,28 +19,25 @@ module.exports = {
         'prettier',
     ],
     plugins: ['preferred-import'],
+    rules: { 'preferred-import/ts-imports': 'error' },
     overrides: [
         {
             files: ['*.astro'],
             parser: 'astro-eslint-parser',
             parserOptions: {
                 parser: '@typescript-eslint/parser',
-                project: true,
+                project,
                 extraFileExtensions: ['.astro'],
             },
-            rules: { 'preferred-import/ts-imports': 'error' },
         },
         {
             files: ['**/*.{ts,tsx}'],
-            parser: '@typescript-eslint/parser',
-            parserOptions: { project },
-            rules: { 'preferred-import/ts-imports': 'error' },
         },
         {
             // ensures to also lint these extensions
-            files: ['*.cjs', '*.mjs'],
+            files: ['**/*.{c,m}js'],
         },
     ],
     // improves performance by ignoring node_modules
-    ignorePatterns: ['node_modules', 'bun.lockb', 'LICENSE', '*.md', 'src/declarations/**', '*.mo', '*.svg'],
+    ignorePatterns: ['node_modules', 'LICENSE', '*.{md,mo,svg,lockb}', 'dist', 'src/declarations'],
 }
