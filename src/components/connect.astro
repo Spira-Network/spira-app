@@ -4,15 +4,15 @@
     import { AnonymousIdentity } from '@dfinity/agent'
     import { AuthClient } from '@dfinity/auth-client'
     import { Bell, Mail } from 'lucide-react'
-    import React from 'react'
     import { createRoot } from 'react-dom/client'
     import Avatar from './connected-avatar'
+    import { type ComponentType, createElement } from 'react'
 
     const IDENTITY_URL = import.meta.env.PUBLIC_II_URL
 
     interface ElementOption {
         tag: string
-        reactComponent?: React.ComponentType<any>
+        reactComponent?: ComponentType<any>
         props?: Record<string, any>
         text?: string
         id?: string
@@ -101,7 +101,7 @@
             const container = document.createElement('div')
             element.appendChild(container)
             const root = createRoot(container)
-            root.render(React.createElement(el.reactComponent, { ...el.props }))
+            root.render(createElement(el.reactComponent, { ...el.props }))
             return element
         }
 

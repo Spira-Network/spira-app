@@ -1,15 +1,12 @@
 import '@fontsource/roboto-slab/latin-300.css'
 
 import { useState } from 'react'
-import { Dialog, DialogTrigger } from './ui/dialog'
-
-import { loginFields } from '@/data/auth-form-fields.json'
-
-import { signUpFields } from '@/data/auth-form-fields.json'
 
 import { Button } from '@/components/ui/button'
-import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle , DialogTrigger } from '@/components/ui/dialog'
+import { loginFields , signUpFields } from '@/data/auth-form-fields.json'
 import { cn } from '@/lib/utils'
+
 import { LabeledInput } from './labeled-input'
 import { Checkbox } from './ui/checkbox'
 

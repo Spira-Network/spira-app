@@ -1,7 +1,8 @@
-import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
-import { bgMagenta, black, dim, magenta, yellow } from 'kleur'
 import { createRequire } from 'node:module'
 import path from 'node:path'
+
+import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
+import { bgMagenta, black, dim, magenta, yellow } from 'kleur'
 
 const require = createRequire(import.meta.url)
 const BASE_URLS = {

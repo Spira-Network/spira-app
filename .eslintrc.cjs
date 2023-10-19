@@ -22,7 +22,6 @@ module.exports = {
     ],
     plugins: ['unused-imports', 'simple-import-sort', 'preferred-import'],
     settings: {
-        'import/core-modules': ['astro'],
         'import/resolver': {
             typescript: {
                 alwaysTryTypes: true,
@@ -34,7 +33,7 @@ module.exports = {
         'import/first': 'error',
         'import/newline-after-import': 'error',
         'import/no-duplicates': 'error',
-        // 'import/no-unresolved': ['error', { ignore: ['^astro'] }],
+        'import/no-unresolved': ['error', { ignore: ['^astro'] }],
         'import/order': 'off', // handled by simple-import-sort/imports
         'no-unused-vars': 'off', // handled by unused-imports/no-unused-vars
         'preferred-import/ts-imports': 'error',
