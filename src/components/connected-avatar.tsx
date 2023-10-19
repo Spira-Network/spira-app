@@ -2,14 +2,17 @@ import '@fontsource/montserrat/latin-600.css'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function ConnectedAvatar({ onDisconnect }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Avatar className='-mr-6 h-8 w-8 border-2 border-black'>
+                <Avatar className='-mr-6 h-8 w-8 border-2 border-black' role='img' aria-labelledby='avatar-username'>
                     <AvatarImage src='https://github.com/memo.png' alt='avatar' />
-                    <AvatarFallback>IC</AvatarFallback>
+                    <AvatarFallback aria-hidden='true' delayMs={0}>
+                        <Skeleton className='h-full w-full bg-slate-500'></Skeleton>
+                    </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align='center' asChild>

@@ -21,8 +21,8 @@ const { whiteNav = false } = Astro.props
     </a>
     <ul class={cn('flex items-center gap-10 font-montserrat font-semibold', whiteNav && 'text-white')}>
         <li><a href='/home' aria-label='navigate to home page'>Home</a></li>
-        <li><Connect /></li>
-        <li><a href='/events'><Globe2 height={32} width={32} /></a></li>
+        <li class='h-8 w-32'><Connect /></li>
+        <li><a href='/events' aria-label='navigate to events map'><Globe2 height={32} width={32} /></a></li>
         <li><NavbarDropdown client:only='react' /></li>
     </ul>
 </nav-bar>

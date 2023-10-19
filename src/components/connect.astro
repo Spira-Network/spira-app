@@ -1,4 +1,10 @@
-<auth-button id='loginBtn' class='flex cursor-pointer flex-row items-center gap-4'>Conectar</auth-button>
+---
+import { Skeleton } from './ui/skeleton'
+---
+
+<auth-button class='flex h-full w-full flex-1 cursor-pointer flex-row items-center gap-4'>
+    <Skeleton className='h-full w-full bg-slate-500' />
+</auth-button>
 
 <script>
     import { AnonymousIdentity } from '@dfinity/agent'
@@ -7,6 +13,7 @@
     import { createRoot } from 'react-dom/client'
     import Avatar from './connected-avatar'
     import { type ComponentType, createElement } from 'react'
+    import { Skeleton } from '@/components/ui/skeleton'
 
     const IDENTITY_URL = import.meta.env.PUBLIC_II_URL
 
@@ -23,6 +30,7 @@
         private static authClient: AuthClient | null = null
         private observer: MutationObserver | null = null
         private boundHandleClick: (event: MouseEvent) => void
+        private authState: 'loading' | 'authenticated' | 'unauthenticated' = 'loading'
 
         constructor() {
             super()
@@ -31,8 +39,9 @@
 
         // LIFECYCLE METHODS
         async connectedCallback() {
+            this.setLoadingUI()
             await this.initAuthClient()
-            this.updateUI()
+            await this.updateUI()
             this.addEventListener('click', this.boundHandleClick)
             this.observeDropdownState()
         }
@@ -62,15 +71,51 @@
         }
 
         // UI METHODS
+        private setLoadingUI() {
+            console.log('loading')
+            this.setContent([{ tag: 'span', reactComponent: Skeleton, props: { className: 'w-full h-full' } }])
+        }
+
         private async updateUI() {
             const isAuthenticated = await this.isAuthenticated()
-            isAuthenticated ? this.setAuthenticatedUI() : this.setLoginUI()
+            this.authState = isAuthenticated ? 'authenticated' : 'unauthenticated'
+            this.renderBasedOnState()
+        }
+
+        private renderBasedOnState() {
+            switch (this.authState) {
+                case 'loading':
+                    this.setLoadingUI()
+                    break
+                case 'authenticated':
+                    this.setAuthenticatedUI()
+                    break
+                case 'unauthenticated':
+                    this.setLoginUI()
+                    break
+            }
         }
 
         private setAuthenticatedUI() {
             this.setContent([
-                { tag: 'a', reactComponent: Mail, attributes: { href: '/profile', alt: 'navigate to profile page' } },
-                { tag: 'a', reactComponent: Bell, attributes: { href: '/profile', alt: 'navigate to profile page' } },
+                {
+                    tag: 'a',
+                    reactComponent: Mail,
+                    attributes: {
+                        'href': '/profile',
+                        'alt': 'navigate to profile page',
+                        'aria-label': 'navigate to profile',
+                    },
+                },
+                {
+                    tag: 'a',
+                    reactComponent: Bell,
+                    attributes: {
+                        'href': '/profile',
+                        'alt': 'navigate to profile page',
+                        'aria-label': 'navigate to profile',
+                    },
+                },
                 { tag: 'user-avatar', reactComponent: Avatar, props: { onDisconnect: () => this.handleLogout() } },
             ])
         }
