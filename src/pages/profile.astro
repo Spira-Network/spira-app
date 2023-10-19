@@ -1,0 +1,61 @@
+---
+import '@fontsource/montserrat/latin-400.css'
+import '@fontsource/montserrat/latin-500.css'
+import '@fontsource/montserrat/latin-600.css'
+import '@fontsource/roboto-slab/latin-300.css'
+
+import { Facebook, Instagram, MapPin, Twitter, Youtube } from 'lucide-react'
+
+import ProfileTabs from '@/components/profile-tabs'
+import UserAvatar from '@/components/user-avatar'
+import Base from '@/layouts/Base.astro'
+---
+
+<Base>
+    <div class='h-screen flex-1'>
+        <div class='h-2/5 bg-purple-300'>
+            <img
+                src='https://upload.wikimedia.org/wikipedia/commons/8/87/Grzybien002.jpg'
+                alt='user banner'
+                class='h-full w-full object-cover'
+            />
+        </div>
+        <div class='flex gap-10 px-10'>
+            <div
+                class='-my-16 flex h-full w-[30%] flex-col gap-4 rounded-md bg-white p-6 font-montserrat drop-shadow-xl'>
+                <UserAvatar client:load className='self-center' />
+                <p class='mt-4 font-semibold uppercase'>Casiopea</p>
+                <span class='line-clamp-1 font-medium hover:line-clamp-none'>
+                    <MapPin className='inline h-3.5 w-3.5 align-middle  [fill:black] [&_circle]:[fill:white]' />
+                    <span class='align-middle'> Montevideo, Departamento de Montevideo, Uruguay</span>
+                </span>
+                <p>Iconos de cualidades (signos)</p>
+                <p>Mail / Website / Pronombres</p>
+                <a href='/profile/#edit' class='mt-4 text-sm font-medium text-rose-300'>Editar perfil</a>
+                <div class='flex flex-col gap-4 font-robotoslab font-light'>
+                    <p>Áreas (con puntitos de colores)</p>
+                    <p>Cualidades (con hashtags e iconos)</p>
+                    <p>
+                        Descripción: Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptate dolores unde
+                        officiis, consequuntur tempora deleniti quasi nostrum? Possimus, saepe? Eaque, id quam? Iure
+                        repellat fuga rem aliquid consequuntur ducimus quibusdam. Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Nam pariatur harum possimus totam officiis. Dolore in, nesciunt itaque
+                        praesentium eaque aliquid qui magni magnam fugiat, ipsam placeat nobis autem quidem!
+                    </p>
+                </div>
+                <div class='mt-8 text-center font-montserrat text-xs uppercase'>Miembro desde: 6 de agosto de 2011</div>
+                <div class='mt-4 flex justify-end gap-1'>
+                    <Instagram className='rounded-md bg-gray-800 p-0.5 [stroke:white]' />
+                    <Facebook className='rounded-md bg-gray-800 p-0.5 [stroke:white]' />
+                    <Twitter className='rounded-md bg-gray-800 p-0.5 [stroke:white]' />
+                    <Youtube
+                        className='rounded-md bg-gray-800 p-0.5 [stroke:white] [fill:white] [&_path:last-child]:[stroke:rgb(31,41,55)]'
+                    />
+                </div>
+            </div>
+            <div class='flex-1 pt-8'>
+                <ProfileTabs client:only='react' />
+            </div>
+        </div>
+    </div>
+</Base>

@@ -14,6 +14,7 @@
         tag: string
         reactComponent?: ComponentType<any>
         props?: Record<string, any>
+        attributes?: { [key: string]: string }
         text?: string
         id?: string
     }
@@ -68,8 +69,8 @@
 
         private setAuthenticatedUI() {
             this.setContent([
-                { tag: 'span', reactComponent: Mail },
-                { tag: 'span', reactComponent: Bell },
+                { tag: 'a', reactComponent: Mail, attributes: { href: '/profile', alt: 'navigate to profile page' } },
+                { tag: 'a', reactComponent: Bell, attributes: { href: '/profile', alt: 'navigate to profile page' } },
                 { tag: 'user-avatar', reactComponent: Avatar, props: { onDisconnect: () => this.handleLogout() } },
             ])
         }
@@ -92,15 +93,23 @@
                 element = document.createElement(el.tag)
                 if (el.text) element.textContent = el.text
                 if (el.id) element.id = el.id
+                if (el.attributes) {
+                    for (const [attr, value] of Object.entries(el.attributes)) {
+                        element.setAttribute(attr, value)
+                    }
+                }
             }
             this.appendChild(element)
         }
 
         private createReactElement(el: ElementOption) {
             const element = document.createElement(el.tag)
-            const container = document.createElement('div')
-            element.appendChild(container)
-            const root = createRoot(container)
+            if (el.attributes) {
+                for (const [attr, value] of Object.entries(el.attributes)) {
+                    element.setAttribute(attr, value)
+                }
+            }
+            const root = createRoot(element)
             root.render(createElement(el.reactComponent, { ...el.props }))
             return element
         }
