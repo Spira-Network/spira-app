@@ -4,6 +4,7 @@ import '@fontsource/montserrat/latin-600.css'
 import { Globe2 } from 'lucide-react'
 import NavbarDropdown from './navbar-dropdown'
 import Connect from './connect.astro'
+import { cn } from '@/lib/utils'
 
 interface Props {
     whiteNav?: boolean
@@ -16,7 +17,7 @@ const { whiteNav = false } = Astro.props
     <a href='/' class='h-1/6' aria-label='navigate to index page'>
         <img src='horizontal.png' alt='spira horizontal logo' class='max-w-[250px] max-h-[100px] aspect-auto' />
     </a>
-    <ul class=`flex items-center gap-10 font-montserrat font-semibold ${whiteNav && "text-white"}`>
+    <ul class={cn('flex items-center gap-10 font-montserrat font-semibold', whiteNav && 'text-white')}>
         <li><a href='home' aria-label='navigate to home page'>Home</a></li>
         <li><Connect /></li>
         <li><a href='events'><Globe2 height={32} width={32} /></a></li>

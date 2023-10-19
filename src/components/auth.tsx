@@ -9,6 +9,7 @@ import { signUpFields } from '@/data/auth-form-fields.json'
 
 import { Button } from '@/components/ui/button'
 import { DialogContent, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
+import { cn } from '@/lib/utils'
 import { LabeledInput } from './labeled-input'
 import { Checkbox } from './ui/checkbox'
 
@@ -23,11 +24,11 @@ function Modal({
     footerLinkAction,
 }: any) {
     return (
-        <DialogContent className={`${isSingleColumn ? 'max-w-xs' : 'max-w-2xl'} p-8`}>
+        <DialogContent className={cn('p-8', isSingleColumn ? 'max-w-xs' : 'max-w-2xl')}>
             <DialogHeader>
                 <DialogTitle className='text-[#346284] text-4xl font-light font-robotoslab mb-4'>{title}</DialogTitle>
             </DialogHeader>
-            <form className={`${isSingleColumn ? 'flex flex-col' : 'grid grid-cols-2'} gap-6`}>
+            <form className={cn('gap-6', isSingleColumn ? 'flex flex-col' : 'grid grid-cols-2')}>
                 {fieldsData.map((field: any) => (
                     <LabeledInput
                         key={field.id}
@@ -50,7 +51,7 @@ function Modal({
                 </div>
             )}
 
-            <DialogFooter className={`${isSingleColumn ? 'flex flex-col' : 'grid grid-cols-2'} gap-6`}>
+            <DialogFooter className={cn('gap-6', isSingleColumn ? 'flex flex-col' : 'grid grid-cols-2')}>
                 <Button
                     type='submit'
                     className='bg-[#10a2df] text-white w-full p-6 hover:bg-[#10a2df] hover:brightness-90'>
