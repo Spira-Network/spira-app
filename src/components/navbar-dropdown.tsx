@@ -20,11 +20,11 @@ export default function NavbarDropdown() {
                 <Menu className='cursor-pointer' />
             </DropdownMenuTrigger>
             <DropdownMenuContent align='end' asChild>
-                <ul className='w-96 flex flex-col p-4 mt-4 border-t-4  rounded-none   backdrop-filter bg-slate-800 bg-opacity-40 backdrop-blur-md shadow-md border-slate-600'>
+                <ul className='mt-4 flex w-96 flex-col rounded-none border-t-4  border-slate-600   bg-slate-800/40 p-4 shadow-md backdrop-blur-md'>
                     {items.map((item, i) => {
                         return (
                             <DropdownMenuItem key={i} asChild>
-                                <li className='text-white text-base font-montserrat font-semibold'>{item}</li>
+                                <li className='font-montserrat text-base font-semibold text-white'>{item}</li>
                             </DropdownMenuItem>
                         )
                     })}

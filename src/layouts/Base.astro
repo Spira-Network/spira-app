@@ -1,6 +1,6 @@
 ---
 import '@/globals.css'
-import Nav from '../components/navbar.astro'
+import Nav from '@/components/navbar.astro'
 import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
@@ -27,7 +27,7 @@ const pageTitle = [title, 'Spira'].filter(Boolean).join(' - ')
     </head>
     <body>
         <Nav {whiteNav} />
-        <main class='scroll-smooth overflow-x-hidden'>
+        <main class='overflow-x-hidden scroll-smooth'>
             <slot />
         </main>
         <script>

@@ -11,9 +11,9 @@ const { from, scrollTo } = Astro.props
 
 <scroll-button
     aria-label='scroll down'
-    class='absolute right-10 bottom-10 opacity-5 motion-safe:animate-pulse'
+    class='absolute bottom-10 right-10 opacity-5 motion-safe:animate-pulse'
     data-from={from}>
-    <a href={scrollTo} class='text-xs items-center flex'>
+    <a href={scrollTo} class='flex items-center text-xs'>
         desliza
         <Mouse width={32} height={32} />
     </a>

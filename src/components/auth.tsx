@@ -26,7 +26,7 @@ function Modal({
     return (
         <DialogContent className={cn('p-8', isSingleColumn ? 'max-w-xs' : 'max-w-2xl')}>
             <DialogHeader>
-                <DialogTitle className='text-[#346284] text-4xl font-light font-robotoslab mb-4'>{title}</DialogTitle>
+                <DialogTitle className='mb-4 font-robotoslab text-4xl font-light text-[#346284]'>{title}</DialogTitle>
             </DialogHeader>
             <form className={cn('gap-6', isSingleColumn ? 'flex flex-col' : 'grid grid-cols-2')}>
                 {fieldsData.map((field: any) => (
@@ -41,11 +41,11 @@ function Modal({
             </form>
 
             {isSingleColumn && (
-                <div className='flex items-center space-x-2 mt-6'>
+                <div className='mt-6 flex items-center space-x-2'>
                     <Checkbox id='keepMeLoggedIn' />
                     <label
                         htmlFor='keepMeLoggedIn'
-                        className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-[#a0a0a0]'>
+                        className='text-sm font-medium leading-none text-[#a0a0a0] peer-disabled:cursor-not-allowed peer-disabled:opacity-70'>
                         Mantenerme conectado
                     </label>
                 </div>
@@ -54,17 +54,17 @@ function Modal({
             <DialogFooter className={cn('gap-6', isSingleColumn ? 'flex flex-col' : 'grid grid-cols-2')}>
                 <Button
                     type='submit'
-                    className='bg-[#10a2df] text-white w-full p-6 hover:bg-[#10a2df] hover:brightness-90'>
+                    className='w-full bg-[#10a2df] p-6 text-white hover:bg-[#10a2df] hover:brightness-90'>
                     {primaryButtonText}
                 </Button>
                 <Button
                     type='button'
                     onClick={onSecondaryButtonClick}
-                    className='bg-[#eee] text-[#6e6e6e] w-full p-6 shadow-md hover:bg-[#eee] hover:brightness-9'>
+                    className='w-full bg-[#eee] p-6 text-[#6e6e6e] shadow-md hover:bg-[#eee] hover:brightness-90'>
                     {secondaryButtonText}
                 </Button>
                 {footerLinkText && (
-                    <button type='button' onClick={footerLinkAction} className='text-[#999] font-medium text-sm'>
+                    <button type='button' onClick={footerLinkAction} className='text-sm font-medium text-[#999]'>
                         {footerLinkText}
                     </button>
                 )}
