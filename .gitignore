@@ -22,3 +22,4 @@ pnpm-debug.log*
 .dfx
 .vercel
 playwright-report
+dfx_error.log
