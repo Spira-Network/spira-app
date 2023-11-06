@@ -4,7 +4,7 @@
   "type": "module",
   "author": "Otto G <5030059+ottodevs@users.noreply.github.com> (https://github.com/ottodevs)",
   "license": "AGPL-3.0",
-  "packageManager": "bun@1.0.6",
+  "packageManager": "bun@1.0.7",
   "scripts": {
     "astro": "astro",
     "build": "astro build",
