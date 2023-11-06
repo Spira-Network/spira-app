@@ -21,3 +21,4 @@ pnpm-debug.log*
 
 .dfx
 .vercel
+playwright-report
