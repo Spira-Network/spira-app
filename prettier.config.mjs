@@ -8,7 +8,7 @@
 
 /** @type {import('prettier').Config & ExtendedOptions} */
 export default {
-    $schema: 'http://json.schemastore.org/prettierrc',
+    $schema: 'https://json.schemastore.org/prettierrc',
     arrowParens: 'avoid',
     bracketSameLine: true,
     bracketSpacing: true,

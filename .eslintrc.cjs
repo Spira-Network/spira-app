@@ -4,7 +4,7 @@ const project = './tsconfig.eslint.json'
 
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-    $schema: 'http://json.schemastore.org/eslintrc',
+    $schema: 'https://json.schemastore.org/eslintrc',
     root: true,
     parser: '@typescript-eslint/parser',
     parserOptions: {
