@@ -70,6 +70,9 @@
     "tailwindcss-animate": "1.0.7",
     "vitest": "0.34.6"
   },
+  "resolutions": {
+    "astro": "3.4.3"
+  },
   "commitlint": { "extends": ["gitmoji"] },
   "husky": {
     "hooks": {
