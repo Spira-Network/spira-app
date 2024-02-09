@@ -2,7 +2,7 @@ import { createRequire } from 'node:module'
 import path from 'node:path'
 
 import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
-import { bgMagenta, black, dim, magenta, yellow } from 'kleur'
+// import { bgMagenta, black, dim, magenta, yellow } from 'kleur'
 
 const require = createRequire(import.meta.url)
 const BASE_URLS = {
@@ -50,14 +50,16 @@ function getInternetIdentityUrl(isDev: boolean, logger: AstroIntegrationLogger):
 }
 
 function logIdentityDetails(url: string, env: string) {
-    const identityLabel = bgMagenta(black(' internet-identity '))
-    const environmentLabel = magenta(env)
+    // const identityLabel = bgMagenta(black(' internet-identity '))
+    // const environmentLabel = magenta(env)
 
     const logs = [
         '',
-        `  🆔 ${identityLabel} ${environmentLabel}`,
+        // `  🆔 ${identityLabel} ${environmentLabel}`,
+        `  🆔 internet-identity ${env}`,
         '',
-        `  ${dim('┃')} Service  ${yellow(url)}`,
+        // `  ${dim('┃')} Service  ${yellow(url)}`,
+        `  ┃ Service  ${url}`,
         '',
     ].join('\n')
 
