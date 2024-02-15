@@ -1,28 +1,18 @@
 ---
 import '@fontsource/montserrat/latin-600.css'
 
-import { Globe2 } from 'lucide-react'
+import { Globe, Globe2 } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
-
-import Connect from './connect.astro'
 import NavbarDropdown from './navbar-dropdown'
-
-interface Props {
-    whiteNav?: boolean
-}
-
-const { whiteNav = false } = Astro.props
 ---
 
-<nav-bar white-nav={whiteNav} class='fixed z-10 flex w-screen items-center justify-between px-20 transition-all'>
+<nav-bar class='fixed z-10 flex w-screen items-center justify-between px-20 transition-all'>
     <a href='/' class='h-1/6' aria-label='navigate to index page'>
         <img src='/horizontal.png' alt='spira horizontal logo' class='aspect-auto max-h-[100px] max-w-[250px]' />
     </a>
-    <ul class={cn('flex items-center gap-10 font-montserrat font-semibold', whiteNav && 'text-white')}>
-        <li><a href='/home' aria-label='navigate to home page'>Home</a></li>
-        <li class='h-8 w-32'><Connect /></li>
+    <ul class='flex items-center gap-10 font-montserrat font-semibold'>
         <li><a href='/events' aria-label='navigate to events map'><Globe2 height={32} width={32} /></a></li>
+        <li><a href='/events' aria-label='navigate to events map'><Globe height={32} width={32} /></a></li>
         <li><NavbarDropdown client:only='react' /></li>
     </ul>
 </nav-bar>
