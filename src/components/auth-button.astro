@@ -1,0 +1,39 @@
+---
+// src/components/auth-button.astro
+---
+
+<script>
+    import { authState, authenticate, logout, type AuthState } from '@/stores/auth'
+
+    const buttonTexts: Record<AuthState['status'], string> = {
+        idle: 'Conectar',
+        connecting: 'Conectando...',
+        authenticated: 'Desconectar',
+        error: 'Error',
+    }
+
+    const addEventListeners = () => {
+        const button = document.getElementById('authButton')
+
+        const updateButtonText = () => {
+            const { status } = authState.get()
+            button.textContent = buttonTexts[status]
+        }
+
+        updateButtonText() // Actualizar en la carga inicial
+        authState.subscribe(updateButtonText) // Suscribirse a cambios
+
+        button.addEventListener('click', () => {
+            const { status } = authState.get()
+            if (status !== 'connecting') {
+                status === 'authenticated' ? logout() : authenticate()
+            }
+        })
+    }
+
+    if (typeof window !== 'undefined') {
+        window.addEventListener('DOMContentLoaded', addEventListeners)
+    }
+</script>
+
+<button id='authButton'></button>
