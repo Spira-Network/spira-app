@@ -1,0 +1,47 @@
+---
+// src/components/connection-status.astro
+---
+
+<script>
+    import { authState } from '@/stores/auth'
+
+    const statusTexts = {
+        idle: '🔴 Desconectado',
+        connecting: '🟡 Conectando...',
+        authenticated: '💚 Conectado',
+        error: '❌ Error',
+    }
+
+    const updateConnectionStatus = () => {
+        const statusDiv = document.getElementById('connectionStatus')
+        if (!statusDiv) return
+
+        // Limpiar el contenido actual
+        statusDiv.textContent = ''
+
+        const state = authState.get()
+        const status = statusTexts[state.status]
+        const principal = state.principal || ''
+
+        // Crear y añadir el párrafo del estado de conexión
+        const statusParagraph = document.createElement('p')
+        statusParagraph.textContent = `Estado de conexión: ${status}`
+        statusDiv.appendChild(statusParagraph)
+
+        // Añadir el párrafo del ID principal si el usuario está conectado
+        if (state.status === 'authenticated' && principal) {
+            const principalParagraph = document.createElement('p')
+            principalParagraph.textContent = `ID Principal: ${principal}`
+            statusDiv.appendChild(principalParagraph)
+        }
+    }
+
+    if (typeof window !== 'undefined') {
+        window.addEventListener('DOMContentLoaded', () => {
+            authState.subscribe(updateConnectionStatus)
+            updateConnectionStatus() // Actualizar inmediatamente
+        })
+    }
+</script>
+
+<div id='connectionStatus'>Cargando estado de conexión...</div>

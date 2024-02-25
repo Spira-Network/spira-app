@@ -6,7 +6,18 @@ import internetIdentity from './tools/astro-ii-integration'
 
 export default defineConfig({
     vite: {
-        server: { watch: { ignored: ['**/.dfx/**', '**/dist/**'] } },
+        server: {
+            watch: { ignored: ['**/.dfx/**', '**/dist/**'] },
+            proxy: {
+                '/api': {
+                    target: 'http://localhost:8000',
+                    changeOrigin: true,
+                },
+            },
+        },
+        define: {
+            global: 'globalThis',
+        },
     },
     integrations: [
         internetIdentity(),
