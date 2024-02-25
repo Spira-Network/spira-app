@@ -1,7 +1,7 @@
 {
     "canisters": {
-        "registry": {
-            "main": "src/canisters/registry.mo",
+        "access_control": {
+            "main": "src/canisters/access-control.mo",
             "type": "motoko"
         },
         "internet_identity": {
@@ -15,7 +15,7 @@
             }
         },
         "assets": {
-            "dependencies": ["internet_identity", "registry"],
+            "dependencies": ["internet_identity", "access_control"],
             "frontend": {
                 "entrypoint": "dist/index.html"
             },
@@ -38,5 +38,6 @@
             "type": "persistent"
         }
     },
-    "version": 1
+    "version": 1,
+    "output_env_file": ".env"
 }
