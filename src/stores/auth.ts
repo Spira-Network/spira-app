@@ -17,7 +17,7 @@ const authChannel = new BroadcastChannel('auth_channel')
 
 let authClient: AuthClient // Almacenar la instancia del cliente de autenticación
 
-async function initAuthClient() {
+export async function initAuthClient() {
     if (!authClient) {
         authClient = await AuthClient.create()
     }

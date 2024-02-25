@@ -3,7 +3,7 @@
 ---
 
 <script>
-    import { authState, authenticate, logout, type AuthState } from '@/stores/auth'
+    import { authState, authenticate, logout, initAuthClient, type AuthState } from '@/stores/auth'
 
     const buttonTexts: Record<AuthState['status'], string> = {
         idle: 'Conectar',
@@ -32,7 +32,10 @@
     }
 
     if (typeof window !== 'undefined') {
-        window.addEventListener('DOMContentLoaded', addEventListeners)
+        window.addEventListener('DOMContentLoaded', async () => {
+            await initAuthClient()
+            addEventListeners()
+        })
     }
 </script>
 
