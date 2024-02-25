@@ -25,5 +25,8 @@
             "attr_quotes": "single",
             "attr_name": "className"
         }
+    },
+    "[astro]": {
+        "editor.defaultFormatter": "astro-build.astro-vscode"
     }
 }
