@@ -8,10 +8,10 @@ export default function ConnectedAvatar({ onDisconnect }) {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Avatar className='-mr-6 h-8 w-8 border-2 border-black' role='img' aria-labelledby='avatar-username'>
+                <Avatar className='-mr-6 size-8 border-2 border-black' role='img' aria-labelledby='avatar-username'>
                     <AvatarImage src='/profile_avatar.jpg' alt='avatar' />
                     <AvatarFallback aria-hidden='true' delayMs={0}>
-                        <Skeleton className='h-full w-full bg-slate-500'></Skeleton>
+                        <Skeleton className='size-full bg-slate-500'></Skeleton>
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
