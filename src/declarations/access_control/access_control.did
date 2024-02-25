@@ -1,0 +1,19 @@
+type Result = 
+ variant {
+   err: Error;
+   ok: Profile;
+ };
+type Profile = 
+ record {
+   "principal": principal;
+   userName: text;
+ };
+type Error = variant {NotFound;};
+service : {
+  getCounts: () -> (text) query;
+  getProfiles: () -> (text) query;
+  increment: () -> (nat);
+  myCount: () -> (nat) query;
+  myProfile: () -> (Result) query;
+  setProfile: (text) -> ();
+}
